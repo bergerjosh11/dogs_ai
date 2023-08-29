@@ -6,7 +6,6 @@ from tensorflow.keras.models import Model
 
 # Define paths to your dataset
 train_data_dir = 'path_to_train_data_directory'
-validation_data_dir = 'path_to_validation_data_directory'
 
 # Define parameters
 batch_size = 32
