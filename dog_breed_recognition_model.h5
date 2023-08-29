@@ -1,0 +1,33 @@
+import argparse
+import tensorflow as tf
+from tensorflow.keras.preprocessing import image
+from tensorflow.keras.applications.mobilenet_v2 import preprocess_input, decode_predictions
+
+def load_model(model_path):
+    return tf.keras.models.load_model(model_path)
+
+def predict_image(model, img_path):
+    img = image.load_img(img_path, target_size=(224, 224))
+    x = image.img_to_array(img)
+    x = preprocess_input(x)
+    x = tf.expand_dims(x, axis=0)
+    
+    predictions = model.predict(x)
+    decoded_predictions = decode_predictions(predictions, top=5)[0]
+    return decoded_predictions
+
+def main():
+    parser = argparse.ArgumentParser(description="Dog Breed Recognition CLI")
+    parser.add_argument("model_path", help="Path to the model file (dog_breed_recognition_model.h5)")
+    parser.add_argument("image_path", help="Path to the input image for prediction")
+    args = parser.parse_args()
+
+    model = load_model(args.model_path)
+    predictions = predict_image(model, args.image_path)
+    
+    print("Top 5 predicted dog breeds:")
+    for i, (imagenet_id, label, score) in enumerate(predictions):
+        print(f"{i + 1}: {label} ({score:.2f})")
+
+if __name__ == "__main__":
+    main()
