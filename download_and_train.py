@@ -16,7 +16,7 @@ if not os.path.exists(extract_path):
         tar.extractall()
 
 # Define paths and parameters
-train_data_dir = "train_data_directory"
+train_data_dir = "dogs_dataset"
 batch_size = 32
 epochs = 10
 image_size = (224, 224)
