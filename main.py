@@ -5,7 +5,7 @@ from tensorflow.keras.layers import Dense, GlobalAveragePooling2D
 from tensorflow.keras.models import Model
 
 # Define paths to your dataset
-train_data_dir = 'path_to_train_data_directory'
+train_data_dir = "dogs_dataset"
 
 # Define parameters
 batch_size = 32
